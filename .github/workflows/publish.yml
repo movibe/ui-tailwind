@@ -1,0 +1,39 @@
+name: Publish
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  publish:
+    name: Publish
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 20
+          cache: yarn
+
+      - name: Install dependencies
+        run: |
+          yarn install --frozen-lockfile --non-interactive --ignore-scripts
+
+      - name: Run linters
+        uses: wearerequired/lint-action@v1
+        with:
+          prettier: false
+          eslint: true
+          auto_fix: true
+          commit_message: "fix: code style issues with ${linter}"
+
+      - name: Build
+        run: |
+          yarn build
+
+      - name: Semantic Release
+        run: npx semantic-release
