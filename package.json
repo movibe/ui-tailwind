@@ -4,6 +4,7 @@
   "main": "dist/bundle.cjs.js",
   "module": "dist/bundle.esm.js",
   "types": "dist/types/index.d.ts",
+  "type": "module",
   "files": [
     "dist"
   ],
