@@ -32,11 +32,8 @@ jobs:
       - name: Run linters
         uses: wearerequired/lint-action@v1
         with:
-          prettier: false
           eslint: true
-          auto_fix: true
-          commit_message: "fix: code style issues with ${linter}"
-
+   
       - name: Build
         run: |
           yarn build
