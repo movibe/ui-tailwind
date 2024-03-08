@@ -1,6 +1,10 @@
 name: Pull request development
 
-on: push
+# on push ignore main branch
+on:
+  push:
+    branches-ignore:
+      - main
 
 jobs:
   test:
@@ -24,6 +28,14 @@ jobs:
         run: yarn install --frozen-lockfile --non-interactive
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GIT_PACKAGES_TOKEN }}
+
+      - name: Run linters
+        uses: wearerequired/lint-action@v1
+        with:
+          prettier: false
+          eslint: true
+          auto_fix: true
+          commit_message: "fix: code style issues with ${linter}"
 
       - name: Build
         run: |

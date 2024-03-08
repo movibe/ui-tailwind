@@ -1,25 +1,25 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import React from "react";
-import { View } from "react-native";
-import { Button } from ".";
+import type {Meta, StoryObj} from '@storybook/react'
+import {View} from 'react-native'
+
+import {Button, ButtonProps} from './index'
 
 const meta = {
-  title: "Button",
+  title: 'Button',
   component: Button,
   args: {
-    text: "Hello world",
+    text: 'Hello world',
   },
   decorators: [
-    (Story) => (
-      <View style={{ padding: 16 }}>
+    Story => (
+      <View style={{padding: 16}}>
         <Story />
       </View>
     ),
   ],
-} satisfies Meta<typeof Button>;
+} as Meta<ButtonProps>
 
-export default meta;
+export default meta
 
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<typeof meta>
 
-export const Basic: Story = {};
+export const Basic: Story = {}

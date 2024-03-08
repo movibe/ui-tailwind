@@ -1,0 +1,6 @@
+/.expo
+node_modules
+npm-debug.log
+dist
+.storybook
+.ondevice
